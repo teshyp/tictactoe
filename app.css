@@ -1,0 +1,47 @@
+/* #main-container {
+    border: solid 2px blue;
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+*/
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+#game-box {
+    border: dotted 5px purple;
+    width: 500px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#playerScores {
+    display: flex;
+    flex-direction: column;
+}
+
+#gameBoard {
+    border: solid 4px peru;
+    width: 350px;
+    height: 350px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.gameSquare {
+    border: solid 3px blue;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
