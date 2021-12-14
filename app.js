@@ -6,9 +6,9 @@ const gameBoard = (() => {
         return { name, marker };
     }
 
-    // gererate gameboard with default image, set img data values, append img to gameboard
     let gameSq = document.getElementsByClassName("gameSquare")
     let board = [];
+    // gererate gameboard with default image, set img data values, append img to gameboard
 
     for (let i = 0;i < gameSq.length;i++) { //for each sq on the grid
         const card = document.createElement("img") // create img
@@ -17,17 +17,62 @@ const gameBoard = (() => {
         card.addEventListener("click", updateBoard)
         gameSq[i].appendChild(card) // append img to gameSq Div
         board.push(card.getAttribute("data-value")) // push data-value to board array
-    }
-    console.log("Board loaded " + board)
+    };
+    // console.log("Board loaded " + board)
     return board;
-}
+
 });
 
 
 
+
 function updateBoard() {
-    let player1Tracker = ["", "", "", "", "", "", "", "", ""];
-    let player2Tracker = ["", "", "", "", "", "", "", "", ""];
+
+    // declare players
+    // const playerOne = createPlayer("Player 1", cross);
+    // // const playerTwo = createPlayer("Player 2", circle);
+    const markedBoard = gameBoard();
+    let activePlayer;
+    let playerOneTracker = [];
+    let playerTwoTracker = [];
+
+    //check winning combo
+    function checkWinner() {
+
+        for (let i = 0;i < markedBoard.length - 1;i++) {
+            if (winningCombos[i] === "X, X, X" || winningCombos[i] === "O, O, O") {
+                console.log(winningCombos[i])
+                console.log("winning")
+                //alert this winner
+                //continue playing game
+            } else {
+                console.log("losing")
+            }
+        }
+    }
+
+    // winning combos
+    const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+
+    checkWinner()
+
+
+    // check for winner
+    // for each number in board does it match with any of winningCombos - if true declate winner to current winner.
+    // check if playerOneTracker || playerTwoTraCKER data array contains any of the winning combos
+    // go through each array in PlayerTracker 
+    // then go through each array in winning combo - if any of the combos are true
+    // declare winner to this active player
+
 
 
     // update DOM board
@@ -40,18 +85,20 @@ function updateBoard() {
     // remember clicked img
 
 
-    if (player1Tracker !== null) {
+    if (activePlayer === "playerOne" || activePlayer === "") {
         let clickedVal = this.getAttribute("data-value")
-        player1Tracker.push(clickedVal)
-        console.log(player1Tracker)
+        playerOneTracker.push(clickedVal)
+        console.log(playerOneTracker)
         this.setAttribute("src", "images/o.jpeg")
-        return player1Tracker
-    } else {
+        activePlayer = "playerTwo"
+        return playerOneTracker
+    } else if (activePlayer === "playerTwo") {
         let clickedVal = this.getAttribute("data-value")
-        player2Tracker.push(clickedVal)
-        console.log(player2Tracker)
+        playerTwoTracker.push(clickedVal)
+        console.log(playerTwoTracker)
         this.setAttribute("src", "images/x.jpeg")
-        return player2Tracker
+        activePlayer = "playerTwo"
+        return playerTwoTracker
     }
 }
 
@@ -66,16 +113,6 @@ gameBoard()
 //     function checkWinner(player1Score, player2Score) {
 //     }
 
-//     const winningAxes = [
-//         [0, 1, 2],
-//         [3, 4, 5],
-//         [6, 7, 8],
-//         [0, 3, 6],
-//         [1, 4, 7],
-//         [2, 5, 8],
-//         [0, 4, 8],
-//         [2, 4, 6],
-//     ];
 
 // }
 
